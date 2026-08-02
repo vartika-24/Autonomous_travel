@@ -40,9 +40,9 @@ export async function chooseBestRecovery() {
   );
 
   const reasoning = reasoningText
-    .split("\n")
-    .map(line => line.replace(/^[-•*]\s*/, "").trim())
-    .filter(Boolean);
+  .split("\n")
+  .map((line: string) => line.replace(/^[-•*]\s*/, "").trim())
+  .filter(Boolean);
 
   return {
     recommendation,
