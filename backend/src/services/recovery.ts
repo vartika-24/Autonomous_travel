@@ -1,7 +1,16 @@
 import { alternatives, trip } from "../data/mockTrip";
 import { generateReasoning } from "./gemini";
 
-function score(option: any) {
+type RecoveryOption = {
+  airline: string
+  flight: string
+  departure: string
+  arrival: string
+  cost: number
+  hotelImpact: number
+}
+
+function score(option: RecoveryOption) {
   let score = 1000;
 
   // Cost penalty

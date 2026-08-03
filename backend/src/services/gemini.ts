@@ -1,7 +1,22 @@
+type Flight = {
+  airline: string
+  flight: string
+  departure: string
+  arrival: string
+  score: number
+  cost: number
+  hotelImpact: number
+}
+
+type Trip = {
+  flight: unknown
+  connection: unknown
+}
+
 export async function generateReasoning(
-  trip: any,
-  recommendation: any,
-  alternatives: any[]
+ trip: Trip,
+recommendation: Flight,
+alternatives: Flight[]
 ) {
   const prompt = `
 You are an AI travel recovery assistant.
@@ -57,7 +72,7 @@ Return ONLY bullet points.
       throw new Error(await response.text());
     }
 
-    const data: any = await response.json();
+    const data = await response.json();
 
     return (
   data.candidates?.[0]?.content?.parts?.[0]?.text ??
@@ -70,7 +85,9 @@ Return ONLY bullet points.
   }
 }
 
-function fallbackReasoning(recommendation: any) {
+function fallbackReasoning(
+  recommendation: Flight
+) {
   return [
     "Original flight experienced a significant delay.",
     "The connection became unsafe because of the delay.",

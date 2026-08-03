@@ -58,6 +58,15 @@ app.get("/trip", async (_, res) => {
         "Hotel informed of new arrival",
         "Airport transfer updated",
       ],
+
+      decisionBreakdown: [
+    { label: "Connection Safety", score: 500 },
+    { label: "Arrival Time", score: 320 },
+    { label: "Cost", score: 250 },
+    { label: "Hotel Impact", score: 150 },
+    { label: "Traveler Preference", score: 100 },
+  ],
+
       summary: {
         originalFlight: "UA914",
         newFlight: "VS20",
@@ -65,11 +74,14 @@ app.get("/trip", async (_, res) => {
         additionalCost: 0,
       },
     });
- } catch (err: any) {
+ } catch (err: unknown) {
   console.error("FULL ERROR:", err);
 
+  const message =
+  err instanceof Error ? err.message : "Unknown error";
+
   res.status(500).json({
-    error: err.message || "Unknown error",
+    error: message,
   });
 }
 });

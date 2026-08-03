@@ -15,9 +15,12 @@ export const trip = {
   },
 
   traveler: {
-    preferNonStop: true,
-    maxExtraCost: 0,
-  },
+  name: "Alex Johnson",
+  type: "Business Passenger",
+  preference: "Non-stop preferred",
+  budget: "$0 extra cost",
+  priority: "Fastest recovery",
+},
 }
 
 export const alternatives = [

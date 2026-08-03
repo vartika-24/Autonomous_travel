@@ -23,7 +23,37 @@ import { PassengerProfile } from '@/components/dashboard/passenger-profile'
 
 export default function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [data, setData] = useState<any>(null)
+
+  type DashboardData = {
+  trip: any
+  recommendation: any
+  alternatives: any[]
+  reasoning: string[]
+  timeline: {
+    time: string
+    title: string
+  }[]
+  activities: {
+    time: string
+    title: string
+  }[]
+  notifications: string[]
+  summary: {
+    originalFlight: string
+    newFlight: string
+    delay: string
+    additionalCost: number
+  }
+  decisionBreakdown: {
+    connectionSafety: number
+    arrivalTime: number
+    cost: number
+    hotelImpact: number
+    travelerPreference: number
+  }
+}
+
+  const [data, setData] = useState<DashboardData | null>(null)
   const [approved, setApproved] = useState(false)
 
   useEffect(() => {
@@ -93,7 +123,7 @@ export default function DashboardPage() {
 
               <AiInsights />
 
-              <PassengerProfile />
+              <PassengerProfile traveler={data.trip.traveler} />
 
             <ActivityFeed
               activities={data.activities}
@@ -113,6 +143,7 @@ export default function DashboardPage() {
 
               <DecisionBreakdown
   score={data.recommendation.score}
+  metrics={data.decisionBreakdown}
 />
 
               <RiskScore

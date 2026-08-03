@@ -1,48 +1,35 @@
 'use client'
 
 import {
+  Brain,
   Shield,
   Clock3,
   DollarSign,
   Hotel,
   User,
-  Brain,
 } from 'lucide-react'
+
+type DecisionMetric = {
+  label: string
+  score: number
+}
 
 type DecisionBreakdownProps = {
   score: number
+  metrics: DecisionMetric[]
 }
 
 export function DecisionBreakdown({
   score,
+  metrics,
 }: DecisionBreakdownProps) {
-  const metrics = [
-    {
-      icon: Shield,
-      label: 'Connection Safety',
-      value: '+500',
-    },
-    {
-      icon: Clock3,
-      label: 'Arrival Time',
-      value: '+320',
-    },
-    {
-      icon: DollarSign,
-      label: 'Cost',
-      value: '+250',
-    },
-    {
-      icon: Hotel,
-      label: 'Hotel Impact',
-      value: '+150',
-    },
-    {
-      icon: User,
-      label: 'Traveler Preference',
-      value: '+100',
-    },
-  ]
+  const iconMap = {
+    'Connection Safety': Shield,
+    'Arrival Time': Clock3,
+    Cost: DollarSign,
+    'Hotel Impact': Hotel,
+    'Traveler Preference': User,
+  }
 
   return (
     <div className="rounded-2xl border border-border bg-card p-5">
@@ -56,7 +43,10 @@ export function DecisionBreakdown({
 
       <div className="space-y-3">
         {metrics.map((metric) => {
-          const Icon = metric.icon
+          const Icon =
+            iconMap[
+              metric.label as keyof typeof iconMap
+            ] ?? Brain
 
           return (
             <div
@@ -72,7 +62,7 @@ export function DecisionBreakdown({
               </div>
 
               <span className="font-semibold text-green-600">
-                {metric.value}
+                +{metric.score}
               </span>
             </div>
           )

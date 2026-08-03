@@ -1,30 +1,41 @@
 'use client'
 
 import { User, Briefcase, CreditCard, Heart } from 'lucide-react'
+type PassengerProfileProps = {
+  traveler: {
+    name: string
+    type: string
+    preference: string
+    budget: string
+    priority: string
+  }
+}
 
-export function PassengerProfile() {
+export function PassengerProfile({
+  traveler,
+}: PassengerProfileProps) {
   const profile = [
-    {
-      icon: User,
-      label: 'Traveler',
-      value: 'Business Passenger',
-    },
-    {
-      icon: Briefcase,
-      label: 'Preference',
-      value: 'Non-stop preferred',
-    },
-    {
-      icon: CreditCard,
-      label: 'Budget Limit',
-      value: '$0 extra cost',
-    },
-    {
-      icon: Heart,
-      label: 'Priority',
-      value: 'Fastest recovery',
-    },
-  ]
+  {
+    icon: User,
+    label: 'Traveler',
+    value: traveler.type,
+  },
+  {
+    icon: Briefcase,
+    label: 'Preference',
+    value: traveler.preference,
+  },
+  {
+    icon: CreditCard,
+    label: 'Budget Limit',
+    value: traveler.budget,
+  },
+  {
+    icon: Heart,
+    label: 'Priority',
+    value: traveler.priority,
+  },
+]
 
   return (
     <div className="rounded-2xl border border-border bg-card p-5">
