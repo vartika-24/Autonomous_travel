@@ -10,6 +10,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (_, res) => {
+  res.json({
+    service: "SkyFlow AI Backend",
+    status: "healthy",
+    version: "1.0.0",
+  });
+});
+
 app.get("/trip", async (_, res) => {
   try {
     const result = await chooseBestRecovery();
