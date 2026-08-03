@@ -16,6 +16,7 @@ import { RecoveryStatus } from '@/components/dashboard/recovery-status'
 import { PassengerPreferences } from '@/components/dashboard/passenger-preferences'
 import { DecisionMetrics } from '@/components/dashboard/decision-metrics'
 import { DecisionBreakdown } from '@/components/dashboard/decision-breakdown'
+import { Footer } from '@/components/dashboard/footer'
 
 export default function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -123,6 +124,7 @@ export default function DashboardPage() {
           </div>
 
         </div>
+        <Footer />
       </main>
     </div>
   </div>
