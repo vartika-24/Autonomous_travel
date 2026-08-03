@@ -10,6 +10,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/api", (_, res) => {
+  res.json({
+    endpoints: [
+      "GET /",
+      "GET /api",
+      "GET /api/recovery",
+      "POST /api/recovery/approve",
+    ],
+    description: "SkyFlow AI Travel Recovery API",
+  });
+});
+
 app.get("/", (_, res) => {
   res.json({
     service: "SkyFlow AI Backend",
