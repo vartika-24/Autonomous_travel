@@ -1,7 +1,7 @@
 'use client'
 import { ActivityFeed } from '@/components/dashboard/activity-feed'
 import { useEffect, useState } from 'react'
-
+import { SystemStatus } from '@/components/dashboard/system-status'
 import { getTrip } from '@/lib/trip'
 import { RiskScore } from '@/components/dashboard/risk-score'
 import { Sidebar } from '@/components/dashboard/sidebar'
@@ -82,7 +82,7 @@ export default function DashboardPage() {
             </div>
 
             <TravelSummary summary={data.summary} />
-
+              <SystemStatus />
             <ActivityFeed
               activities={data.activities}
             />
