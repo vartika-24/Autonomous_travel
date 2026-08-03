@@ -17,6 +17,9 @@ import { PassengerPreferences } from '@/components/dashboard/passenger-preferenc
 import { DecisionMetrics } from '@/components/dashboard/decision-metrics'
 import { DecisionBreakdown } from '@/components/dashboard/decision-breakdown'
 import { Footer } from '@/components/dashboard/footer'
+import { RecoveryAnalytics } from '@/components/dashboard/recovery-analytics'
+import { AiInsights } from '@/components/dashboard/ai-insights'
+import { PassengerProfile } from '@/components/dashboard/passenger-profile'
 
 export default function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -83,7 +86,15 @@ export default function DashboardPage() {
             </div>
 
             <TravelSummary summary={data.summary} />
+
               <SystemStatus />
+
+              <RecoveryAnalytics />
+
+              <AiInsights />
+
+              <PassengerProfile />
+
             <ActivityFeed
               activities={data.activities}
             />
