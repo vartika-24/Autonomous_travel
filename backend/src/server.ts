@@ -12,13 +12,13 @@ app.use(express.json());
 
 app.get("/api", (_, res) => {
   res.json({
+    description: "SkyFlow AI Travel Recovery API",
     endpoints: [
       "GET /",
       "GET /api",
-      "GET /api/recovery",
-      "POST /api/recovery/approve",
+      "GET /trip",
+      "POST /approve",
     ],
-    description: "SkyFlow AI Travel Recovery API",
   });
 });
 
